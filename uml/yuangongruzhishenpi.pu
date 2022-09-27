@@ -2,16 +2,20 @@
 
 |#lightblue|人事主管|
 start
-repeat :员工入职手续填写;
+repeat :填写员工入职信息;
 
 if (选择提交) then (中心主任)
     |#lightgray|中心主任|
     :审批;
+    else(否)
+    |#lightblue|人事主管|
+    : 纳入人才库;
+    end
 endif
 
 |#lightblue|人事主管|
 backward:重新填写;
 repeat while (通过？) is (否) not (是)
-repeat :员工信息管理;
+ :员工信息管理;
 stop
 @enduml
