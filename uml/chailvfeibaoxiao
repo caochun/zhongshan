@@ -1,0 +1,63 @@
+@startuml
+|#lightblue|员工|
+!pragma useVerticalIf on
+start
+repeat :填写差旅费报销单;
+    if (出差地点或出差时间变化) then (变化)
+            if(大于20W) then (是)
+            |#lightgray|部门或团队领导|
+              if(通过？) then (是)
+                |#lightgray|中心主任|
+                   if(通过?) then (是)
+                     |#lightgray|财务助理|
+                       if (通过?) then(是)
+                         |#lightgray|财务出纳|
+                         :付款;
+                       else(否)
+                       endif
+                   else (否)
+                   endif 
+               else (否)
+              endif
+            else(否)
+              |#lightgray|部门或团队领导|
+              if(通过？) then (是)
+                |#lightgray|财务助理|
+                   if(通过?) then (是)
+                     |#lightgray|财务出纳|
+                         |#lightgray|财务出纳|
+                         :付款;
+                   else (否)
+                   endif 
+               else (否)
+              endif
+            endif
+      else (不变)
+      |#lightblue|员工|
+            if(大于20W) then (是)
+            |#lightgray|中心主任|
+              if(通过？) then (是)
+                |#lightgray|财务助理|
+                   if(通过?) then (是)
+                     |#lightgray|财务出纳|
+                         |#lightgray|财务出纳|
+                         :付款;
+                   else (否)
+                   endif 
+               else (否)
+              endif
+            else(否)
+            |#lightgray|财务助理|
+              if(通过？) then (是)
+                |#lightgray|财务出纳|
+                :付款;
+               else (否)
+              endif
+            endif
+    endif
+  
+|#lightblue|员工|
+backward:驳回（重填单据）;
+repeat while (通过？) is (否) not (是)
+stop
+@enduml
