@@ -1,8 +1,9 @@
 @startuml
 
 |#lightblue|需求部门|
+
 start
-repeat :用人需求;
+repeat :提交用人需求;
 
 if (计划内外) then (内)
     |#lightgray|人事主管|
@@ -10,8 +11,13 @@ if (计划内外) then (内)
 else (外)
     |#lightgray|人事主管|
     :审批;
+    if(是否通过)then (是)
     |#LightGreen|中心主任|
     :审批;
+    else(否)
+    
+    endif
+    
 endif
 
 |#lightblue|需求部门|
