@@ -1,0 +1,36 @@
+@startuml
+|#lightblue|员工|
+start
+repeat :填写运行经费报销单;
+    if (金额大于20W) then (是)
+    |#lightgray|部门或团队领导|
+        if(通过？) then (是)
+        |#lightgray|中心主任|
+            if(通过?) then (是)
+            |#lightgray|财务助理|
+                if (通过?) then(是)
+                |#lightgray|财务出纳|
+                :付款;
+                else(否)
+                endif
+            else (否)
+            endif 
+        else (否)
+        endif
+    else (否)
+    |#lightgray|部门或团队领导|
+        if(通过？) then (是)
+        |#lightgray|财务助理|
+            if(通过?) then (是)
+            |#lightgray|财务出纳|
+            :付款;
+            else (否)
+            endif 
+        else (否)
+        endif
+    endif
+|#lightblue|员工|
+backward:驳回;
+repeat while (通过？) is (否) not (是)
+stop
+@enduml
